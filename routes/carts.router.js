@@ -72,20 +72,16 @@ router.post("/:cid/products/:pid", async (req, res) => {
   try {
       const { cid, pid } = req.params;
 
-      // Busca el carrito por ID
       const cart = await cartsModel.findById(cid);
 
-      // Busca el producto por ID
       const product = await productModel.findById(pid); 
 
       if (!cart || !product) {
           return res.status(404).json({ status: "error", message: "Cart or product not found" });
       }
 
-      // Agrega el producto al carrito
       cart.products.push({ product: product._id, quantity: 1 });
 
-      // Guarda el carrito actualizado
       await cart.save();
 
       res.status(200).json({ status: "success", message: "Product added to cart" });

@@ -10,7 +10,6 @@
             <input type="text" name="product_name" placeholder="Nombre del producto" required>
             <input type="number" name="product_price" placeholder="Precio del producto" required>
             <input type="text" name="product_description" placeholder="Descripción del producto" required>
-            <!-- Agrega más campos según sea necesario -->
             {{#if Message}}
             <p id="messageParagraph" style="color: red;">{{Message}}</p>
             {{/if}}
@@ -18,32 +17,22 @@
         </form>
 
         <h3>Eliminar un producto</h3>
-        <!-- Formulario para eliminar un producto -->
         <form action="/admin/delete-product" method="post">
-            <!-- Campo visible para el usuario -->
             <label for="productId">ID del producto a eliminar:</label>
             <input type="text" name="productId" id="productId" required>
-
-            <!-- Campo oculto para el ID del producto -->
             <input type="hidden" name="productIdHidden" value="{{productId}}">
-
             <button type="submit"
                 onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar
                 Producto</button>
         </form>
 
         <h4>Actualizar un producto</h4>
-        <!-- Formulario para actualizar un producto -->
         <form action="/admin/update-product" method="post">
-            <!-- Campo para el ID del producto a actualizar -->
             <input type="text" name="productIdToUpdate" placeholder="ID del producto a actualizar" required>
-            <!-- Campo oculto para el ID del producto actual -->
             <input type="hidden" name="productId" value="{{productId}}">
-            <!-- Agrega los campos que deseas actualizar -->
             <input type="text" name="newProductName" placeholder="Nuevo nombre del producto">
             <input type="number" name="newProductPrice" placeholder="Nuevo precio del producto">
             <input type="text" name="newProductDescription" placeholder="Nueva descripción del producto">
-            <!-- Agrega más campos según sea necesario -->
             <button type="submit">Actualizar Producto</button>
         </form>
 
