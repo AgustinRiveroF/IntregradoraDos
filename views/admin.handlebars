@@ -1,0 +1,107 @@
+<div class="container">
+    <h1>Bienvenido Admin</h1>
+    <p>¿Qué deseas hacer?</p>
+
+    <div class="form-container">
+        <h2>Agregar un Producto</h2>
+        <!-- Formulario para agregar un producto -->
+        <form action="/api/products" method="post">
+            <!-- Agrega los campos necesarios para la información del producto -->
+            <input type="text" name="product_name" placeholder="Nombre del producto" required>
+            <input type="number" name="product_price" placeholder="Precio del producto" required>
+            <input type="text" name="product_description" placeholder="Descripción del producto" required>
+            <!-- Agrega más campos según sea necesario -->
+            {{#if Message}}
+            <p id="messageParagraph" style="color: red;">{{Message}}</p>
+            {{/if}}
+            <button type="submit">Agregar Producto</button>
+        </form>
+
+        <h3>Eliminar un producto</h3>
+        <!-- Formulario para eliminar un producto -->
+        <form action="/admin/delete-product" method="post">
+            <!-- Campo visible para el usuario -->
+            <label for="productId">ID del producto a eliminar:</label>
+            <input type="text" name="productId" id="productId" required>
+
+            <!-- Campo oculto para el ID del producto -->
+            <input type="hidden" name="productIdHidden" value="{{productId}}">
+
+            <button type="submit"
+                onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar
+                Producto</button>
+        </form>
+
+        <h4>Actualizar un producto</h4>
+        <!-- Formulario para actualizar un producto -->
+        <form action="/admin/update-product" method="post">
+            <!-- Campo para el ID del producto a actualizar -->
+            <input type="text" name="productIdToUpdate" placeholder="ID del producto a actualizar" required>
+            <!-- Campo oculto para el ID del producto actual -->
+            <input type="hidden" name="productId" value="{{productId}}">
+            <!-- Agrega los campos que deseas actualizar -->
+            <input type="text" name="newProductName" placeholder="Nuevo nombre del producto">
+            <input type="number" name="newProductPrice" placeholder="Nuevo precio del producto">
+            <input type="text" name="newProductDescription" placeholder="Nueva descripción del producto">
+            <!-- Agrega más campos según sea necesario -->
+            <button type="submit">Actualizar Producto</button>
+        </form>
+
+    </div>
+</div>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    .form-container {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const messageParagraph = document.getElementById('messageParagraph');
+
+      
+        messageParagraph.style.display = 'block';
+
+        setTimeout(function () {
+            messageParagraph.style.display = 'none';
+        }, 6000);
+    });
+</script>

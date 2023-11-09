@@ -1,0 +1,11 @@
+{
+    "cookie": {
+        "originalMaxAge": 60000,
+        "expires": "2023-11-05T22:24:04.059Z",
+        "httpOnly": true,
+        "path": "/"
+    },
+    "name": "prueba test",
+    "email": "ptest@gmai.com",
+    "__lastAccess": 1699222984059
+}
